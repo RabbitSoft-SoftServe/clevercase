@@ -14,7 +14,7 @@ def SingupPage(request):
         pass1=request.POST.get('password1')
         pass2=request.POST.get('password2')
         if pass1 != pass2:
-            return HttpResponse("Your password and conform are not same")
+            return render(request,'signuperror.html')
         else:
             my_user=User.objects.create_user(uname,email,pass1)
             my_user.save()
@@ -30,7 +30,7 @@ def LoginPage(request):
             login(request, user) 
             return redirect('home')
         else:
-            return render(request, 'login.html', {'user': 0})
+            return render(request, 'loginerror.html', {'user': 0})
     return render (request, 'login.html')
 
 def LogoutPage(request):

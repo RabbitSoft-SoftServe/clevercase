@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../static/img/ico.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/homepage.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <div class="burger">
+            <button class="button">
+                <img src="../static/img/home/burger-menu.svg" alt="Menu Icon"/>
+            </button>
+        </div>
+        <div class="header-text">
+            <img src="../static/img/home/vector-1.svg" alt="Clevercase Logo" style="vertical-align: middle;">
+            Clevercase
+        </div>
+        <div>
+            <div>
+                <button class="button">
+                    <img src="../static/img/home/notifications.svg" alt="Bell Icon" style="vertical-align: middle;">
+                </button>
+                <button class="button">
+                    <img src="../static/img/home/profile.svg" alt="Search Icon" style="vertical-align: middle;">
+                </button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="add_category">
+            <div class="body_text">
+                Your categories
+            </div>
+                <button  class="button_cat" >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" >
+
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M38.171 7.08355C46.4091 16.0145 45.8476 29.9328 36.9167 38.171C27.9858 46.4091 14.0675 45.8476 5.82927 36.9167C-2.40892 27.9858 -1.84736 14.0675 7.08355 5.82927C16.0145 -2.40892 29.9328 -1.84736 38.171 7.08355ZM7.58284 22.011C7.58284 21.1826 8.25441 20.511 9.08284 20.511H20.7834V8.8116C20.7834 7.98317 21.455 7.3116 22.2834 7.3116C23.1119 7.3116 23.7834 7.98317 23.7834 8.8116V20.511H35.4828C36.3113 20.511 36.9828 21.1826 36.9828 22.011C36.9828 22.8394 36.3113 23.511 35.4828 23.511H23.7834V35.2116C23.7834 36.04 23.1119 36.7116 22.2834 36.7116C21.455 36.7116 20.7834 36.04 20.7834 35.2116V23.511H9.08284C8.25441 23.511 7.58284 22.8394 7.58284 22.011Z" fill="#054E2B"/>
+                    </svg>
+                </button>
+        </div>
+        <div class="content-wrapper">
+            <div class="body_text">
+            </div>
+            <button  class="created_category">
+                <span id="category_name">FOOD</span>
+                <svg id="created_category_line" xmlns="http://www.w3.org/2000/svg" width="260" height="2" viewBox="0 0 260 2" fill="none">
+                    <path d="M0 1L260 1" stroke="white"/>
+                </svg>
+                <div class="text-row">
+                  <span class="left-span">Limit:</span>
+                  <span class="right-span">1000₴</span>
+                </div>
+                <div class="text-row">
+                    <span class="left-span">Expended:</span>
+                  <span class="right-span">120₴</span>
+                </div>
+                <div id="created_category_btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="240" viewBox="0 0 64 240" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 240H28.0002C47.8825 240 64.0002 223.882 64.0002 204L64.0002 36C64.0002 16.1177 47.8825 -4.57764e-05 28.0002 -4.57764e-05H0L0 240Z" fill="#A788D8"/>
+                        <path d="M29.75 124.75H30.75V123.75V110.25C30.75 109.918 30.8817 109.601 31.1161 109.366C31.3505 109.132 31.6685 109 32 109C32.3315 109 32.6495 109.132 32.8839 109.366C33.1183 109.601 33.25 109.918 33.25 110.25V123.75V124.75H34.25H47.75C48.0815 124.75 48.3995 124.882 48.6339 125.116C48.8683 125.351 49 125.668 49 126C49 126.332 48.8683 126.649 48.6339 126.884C48.3995 127.118 48.0815 127.25 47.75 127.25H34.25H33.25V128.25V141.75C33.25 142.082 33.1183 142.399 32.8839 142.634C32.6495 142.868 32.3315 143 32 143C31.6685 143 31.3505 142.868 31.1161 142.634C30.8817 142.399 30.75 142.082 30.75 141.75V128.25V127.25H29.75H16.25C15.9185 127.25 15.6005 127.118 15.3661 126.884C15.1317 126.649 15 126.332 15 126C15 125.668 15.1317 125.351 15.3661 125.116C15.6005 124.882 15.9185 124.75 16.25 124.75H29.75Z" fill="#F8F8F8" stroke="white" stroke-width="2"/>
+                    </svg>
+                </div>
+            </button>
+        </div>
+        <div class="content-wrapper">
+            <div class="form-container" id="colorful-object">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="input-container">
+                    <div class="text_box">Name of category</div>
+                    <input class="input-text" type="text" id="category-name" placeholder="Name of category"  {% if obj.cat_name %}value="{{ obj.cat_name }}"{% endif %}>
+                </div>
+                <div class="input-container-date" class="input-text">
+                    <div class="text_box">Period of tracking</div>
+                    <input class="input-text" type="date" id="start-date"  {% if obj.date_of_rent %}value="{{ obj.date_of_rent }}"{% endif %}> – <input class="input-text" type="date" id="end-date" {% if obj.due_date %} value="{{ obj.due_date }}"{% endif %}>
+
+                    <div class="text_box">The limit</div>
+                    <input class="input-text" type="text" id="limit"   {% if obj.the_limit %}value="{{ form.instance.the_limit }}"{% endif %}>
+                    <select class="custom-dropdown" id="currency">
+                        <div class="input-text">
+                            <option class="input-text" value="UAH">UAH</option>
+                            <option class="input-text" value="USD">USD</option>
+                            <option class="input-text" value="EUR">EUR</option>
+                        </div>
+                    </select>
+                </div>
+                <div class="text_box">Currently spent</div>
+                <div class="input-container-date"  class="input-text" id="spent_text">
+                    <input class="input-text" type="text" id="spent"  {% if obj.currently_spent %}value="{{ obj.currently_spent }}"{% endif %}>
+                    <select class="custom-dropdown" id="currency-spent">
+                        <option class="input-text" value="UAH">UAH</option>
+                        <option class="input-text" value="USD">USD</option>
+                        <option class="input-text" value="EUR">EUR</option>
+                    </select>
+                </div>
+                <div class="text_box">Background color</div>
+
+                <div class="input-container-color">
+                    <input type="color" id="bg-color" style="width: 3px; height: 3px; border-radius: 360px" {% if obj.color_save %} value="{{ obj.color_save }}" {% endif %}>
+                </div>
+                <div class="container">
+                    <button class="submit-btn" type="submit">Save changes</button>
+                </div>
+                <button class="close-button">
+                    <img src="../static/img/home/close.svg" alt="Close" style="vertical-align: middle; position: absolute;right: 15px;top: 15px;" >
+                </button>
+             </form>
+            </div>
+        </div>
+
+    </main>
+    <script src="../static/scripts/script.js"></script>
+    <script src="../static/scripts/create_cat.js"></script>
+</body>
+</html>

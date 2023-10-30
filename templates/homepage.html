@@ -46,18 +46,19 @@
         <div class="content-wrapper">
             <div class="body_text">
             </div>
+            {% for category in categories %}
             <button  class="created_category">
-                <span id="category_name">FOOD</span>
+                <span id="category_name">{{ category.cat_name }}</span>
                 <svg id="created_category_line" xmlns="http://www.w3.org/2000/svg" width="260" height="2" viewBox="0 0 260 2" fill="none">
                     <path d="M0 1L260 1" stroke="white"/>
                 </svg>
                 <div class="text-row">
                   <span class="left-span">Limit:</span>
-                  <span class="right-span">1000₴</span>
+                  <span class="right-span">{{ category.the_limit }}</span>
                 </div>
                 <div class="text-row">
                     <span class="left-span">Expended:</span>
-                  <span class="right-span">120₴</span>
+                  <span class="right-span">{{ category.currently_spent }}</span>
                 </div>
                 <div id="created_category_btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="64" height="240" viewBox="0 0 64 240" fill="none">
@@ -66,6 +67,7 @@
                     </svg>
                 </div>
             </button>
+            {% endfor %}
         </div>
         <div class="content-wrapper">
             <div class="form-container" id="colorful-object">

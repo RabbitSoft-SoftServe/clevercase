@@ -3,12 +3,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 
-@login_required(login_url='login')
-def HomePage(request):
-    return render( request, 'homepage.html')
+from wallet.models import Category
 
-def SingupPage(request):
-    if request.method=='POST':
+@login_required(login_url='login')
+def home_page(request):
+    print("home_page")
+    categories = Category.objects.all()
+    context = {
+        'categories': categories,
+    }
+    return render(request, 'homepage.html', context)
+
+def signup_page(request):
+    if request.method == 'POST':
         uname=request.POST.get('username')
         email=request.POST.get('email')
         pass1=request.POST.get('password1')

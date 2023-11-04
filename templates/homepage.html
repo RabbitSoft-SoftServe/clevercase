@@ -71,53 +71,15 @@
         </div>
         <div class="content-wrapper">
             <div class="form-container" id="colorful-object">
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div class="input-container">
-                    <div class="text_box">Name of category</div>
-                    <input class="input-text" type="text" id="category-name" placeholder="Name of category"  {% if obj.cat_name %}value="{{ obj.cat_name }}"{% endif %}>
-                </div>
-                <div class="input-container-date" class="input-text">
-                    <div class="text_box">Period of tracking</div>
-                    <input class="input-text" type="date" id="start-date"  {% if obj.date_of_rent %}value="{{ obj.date_of_rent }}"{% endif %}> – <input class="input-text" type="date" id="end-date" {% if obj.due_date %} value="{{ obj.due_date }}"{% endif %}>
-
-                    <div class="text_box">The limit</div>
-                    <input class="input-text" type="text" id="limit"   {% if obj.the_limit %}value="{{ form.instance.the_limit }}"{% endif %}>
-                    <select class="custom-dropdown" id="currency">
-                        <div class="input-text">
-                            <option class="input-text" value="UAH">UAH</option>
-                            <option class="input-text" value="USD">USD</option>
-                            <option class="input-text" value="EUR">EUR</option>
-                        </div>
-                    </select>
-                </div>
-                <div class="text_box">Currently spent</div>
-                <div class="input-container-date"  class="input-text" id="spent_text">
-                    <input class="input-text" type="text" id="spent"  {% if obj.currently_spent %}value="{{ obj.currently_spent }}"{% endif %}>
-                    <select class="custom-dropdown" id="currency-spent">
-                        <option class="input-text" value="UAH">UAH</option>
-                        <option class="input-text" value="USD">USD</option>
-                        <option class="input-text" value="EUR">EUR</option>
-                    </select>
-                </div>
-                <div class="text_box">Background color</div>
-
-                <div class="input-container-color">
-                    <input type="color" id="bg-color" style="width: 3px; height: 3px; border-radius: 360px" {% if obj.color_save %} value="{{ obj.color_save }}" {% endif %}>
-                </div>
-                <div class="container">
-                    <button class="submit-btn" type="submit">Save changes</button>
-                </div>
-                <button class="close-button">
-                    <img src="../static/img/home/close.svg" alt="Close" style="vertical-align: middle; position: absolute;right: 15px;top: 15px;" >
-                </button>
-             </form>
+                <form action="{% url 'home' %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Create">
+                </form>
             </div>
         </div>
 
     </main>
     <script src="../static/scripts/script.js"></script>
-    <script src="../static/scripts/create_cat.js"></script>
 </body>
 </html>

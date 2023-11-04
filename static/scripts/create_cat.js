@@ -1,12 +1,14 @@
-document.getElementById("bg-color").addEventListener("input", function() {
-    // Встановлюємо колір для елементу з id="colorful-object" на основі вибраного кольору
-    document.getElementById("colorful-object").style.backgroundColor = this.value;
-});
-
-
+const colorSaveElement = document.getElementById("color_save");
+if (colorSaveElement) {
+    colorSaveElement.addEventListener("input", function() {
+        // ...
+    });
+}
 const submitButton = document.querySelector('.submit-btn');
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener('click', (event) => {
+    event.preventDefault();
   const form = document.querySelector('.form-container');
+  console.log(form);
   form.style.display = 'none';
 });
 
@@ -28,11 +30,11 @@ showModalBtn.addEventListener('click', () => {
 });
 
 saveChangesBtn.addEventListener('click', () => {
-    const categoryName = document.getElementById('category-name').value;
-    const startDate = document.getElementById('start-date').value;
-    const endDate = document.getElementById('end-date').value;
-    const limit = document.getElementById('limit').value;
-    const spent = document.getElementById('spent').value;
+    const categoryName = document.getElementById('cat_name').value;
+    const startDate = document.getElementById('date_of_rent').value;
+    const endDate = document.getElementById('due_date').value;
+    const limit = document.getElementById('the_limit').value;
+    const spent = document.getElementById('currently_spent').value;
 
     const categoryCard = document.createElement('div');
     categoryCard.innerHTML = `

@@ -21,8 +21,9 @@ from registration import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/',views.signup_page, name='signup'),
-    path('login/', views.LoginPage, name = 'login'),
-    path('home/', views.home_page, name ='home'),
+    path('login/', views.LoginPage, name='login'),
+    path('home/', views.home_page, name='home'),
     path('logout/', views.LogoutPage, name='logout'),
     path('', views.landing_page, name="landing"),
 ]
+#category_create_view

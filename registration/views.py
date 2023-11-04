@@ -2,7 +2,6 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
-
 from wallet.forms import CategoryCreateForm
 from wallet.models import Category
 
@@ -26,6 +25,7 @@ def home_page(request):
         'form': form,
     }
     return render(request, 'homepage.html', context)
+  
 def signup_page(request):
     if request.method == 'POST':
         uname=request.POST.get('username')

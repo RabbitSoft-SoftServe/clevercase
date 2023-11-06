@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function() {
     var buttonCat = document.querySelector('.button_cat');
     var formContainer = document.querySelector('.form-container');
@@ -28,3 +30,6 @@ if (profileButton) {
         openAddAccount.classList.toggle('is-active');
     });
 }
+
+
+

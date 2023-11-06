@@ -68,7 +68,7 @@ TEMPLATES = [
         },
     },
 ]
-
+TIME_ZONE = 'Europe/Kiev'
 WSGI_APPLICATION = 'clevercase.wsgi.application'
 
 
@@ -107,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
 
 USE_I18N = True
 

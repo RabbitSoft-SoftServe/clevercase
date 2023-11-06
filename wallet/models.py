@@ -18,8 +18,8 @@ class Category(models.Model):
     currently_spent = models.IntegerField(default=0)
     date_of_rent = models.DateTimeField("Date of rent")
     due_date = models.DateTimeField("Due date")
-    currency = models.ForeignKey(to=Currency, on_delete=models.SET_NULL, null=True, blank=True)
-    color_save = models.CharField(max_length=9, default="#0c854b66", null=True, blank=True)
+    currency = models.CharField(max_length=30)
+    color_save = models.CharField(max_length=100, default="#0c854b66", null=True, blank=True)
 
 
     def __str__(self):

@@ -5,12 +5,14 @@ document.getElementById("bg-color").addEventListener("input", function() {
 });
 
 
+
 const submitButton = document.querySelector('.close-button');
 submitButton.addEventListener('click', (event) => {
   const form = document.querySelector('.form-container');
   console.log(form);
   form.style.display = 'none';
 });
+
 
 // const closeButton = document.querySelector('.close-button');
 // closeButton.addEventListener('click', () => {

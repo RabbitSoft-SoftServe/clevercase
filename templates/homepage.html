@@ -45,6 +45,7 @@
         </div>
         <div class="content-wrapper">
             {% for category in categories %}
+
             <div class="created_category" style="background-color: {{ category.color_save }};">
               <span id="category_name">{{ category.cat_name }}</span>
               
@@ -74,10 +75,13 @@
                 <button class="button_edit">
                     <img src="../static/img/home/edit.svg"  alt="edit" >
                 </button>
+
                 </div>
             
             {% endfor %}
+
           </div>
+
         
         <div class="content-wrapper">
         
@@ -116,7 +120,9 @@
              </form>
             </div>
         </div>
+
         </div>
+
         
     </main>
     <script src="../static/scripts/script.js"></script>

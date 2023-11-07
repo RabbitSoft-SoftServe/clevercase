@@ -303,13 +303,14 @@ body {
             margin-bottom: 54px;
         }
         .form-container {
-            position: absolute; /* This is necessary for left/top to work with transform */
-            left: 50%;
-            top: 50%;
             display: none;
-           
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
             margin-top: 50px;
-            
+            margin-left: 253px;
             width: 982px;
             height: 570px;
             background: #88bca4;
@@ -317,7 +318,7 @@ body {
             box-shadow: -1px 8px 24px 6px #00000040;
             backdrop-filter: blur(24px) brightness(100%);
             -webkit-backdrop-filter: blur(24px) brightness(100%);
-            transform: translate(-50%, -50%);
+
         }
         .input-container {
             margin-left: 397px;

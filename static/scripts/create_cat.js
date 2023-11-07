@@ -5,14 +5,13 @@ document.getElementById("bg-color").addEventListener("input", function() {
 });
 
 
-
-const submitButton = document.querySelector('.close-button');
-submitButton.addEventListener('click', (event) => {
-  const form = document.querySelector('.form-container');
-  console.log(form);
-  form.style.display = 'none';
-});
-
+// const submitButton = document.querySelector('.submit-btn');
+// submitButton.addEventListener('click', (event) => {
+//     event.preventDefault();
+//   const form = document.querySelector('.form-container');
+//   console.log(form);
+//   form.style.display = 'none';
+// });
 
 // const closeButton = document.querySelector('.close-button');
 // closeButton.addEventListener('click', () => {

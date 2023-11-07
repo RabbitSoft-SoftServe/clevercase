@@ -11,10 +11,9 @@ def home_page(request):
     if request.method == 'POST':
         form = CategoryCreateForm(request.POST, request=request)
         if form.is_valid():
-            category = form.save(commit=False)  # Создаем объект, но не сохраняем его в базу данных
-            category.user = request.user  # Устанавливаем поле 'user'
-            category.save()  # Теперь сохраняем в базу данных
-
+            category = form.save(commit=False)  
+            category.user = request.user  
+            category.save()  
             return redirect('home')
     else:
         form = CategoryCreateForm()

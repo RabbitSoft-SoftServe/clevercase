@@ -2,13 +2,32 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
+from wallet.forms import CategoryCreateForm
+from wallet.models import Category
 
 @login_required(login_url='login')
-def HomePage(request):
-    return render( request, 'homepage.html')
+def home_page(request):
+    print("home_page")
+    if request.method == 'POST':
+        form = CategoryCreateForm(request.POST, request=request)
+        if form.is_valid():
+            category = form.save(commit=False)  # Создаем объект, но не сохраняем его в базу данных
+            category.user = request.user  # Устанавливаем поле 'user'
+            category.save()  # Теперь сохраняем в базу данных
 
-def SingupPage(request):
-    if request.method=='POST':
+            return redirect('home')
+    else:
+        form = CategoryCreateForm()
+
+    categories = Category.objects.filter(user=request.user)
+    context = {
+        'categories': categories,
+        'form': form,
+    }
+    return render(request, 'homepage.html', context)
+  
+def signup_page(request):
+    if request.method == 'POST':
         uname=request.POST.get('username')
         email=request.POST.get('email')
         pass1=request.POST.get('password1')

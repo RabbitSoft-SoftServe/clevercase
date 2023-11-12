@@ -2,13 +2,13 @@ from django.contrib.auth.models import User
 from django.db import models
 from colorfield.fields import ColorWidget
 from django import forms
+dsw
 
 class Currency(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)
 
     def __str__(self):
         return self.name
-
 
 
 class Category(models.Model):
@@ -20,7 +20,6 @@ class Category(models.Model):
     due_date = models.DateTimeField("Due date")
     currency = models.ForeignKey(to=Currency, on_delete=models.SET_NULL, null=True, blank=True)
     color_save = models.CharField(max_length=9, default="#0c854b66", null=True, blank=True)
-
 
     def __str__(self):
         return self.currency if self.currency else 'No Currency'

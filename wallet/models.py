@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.db import models
 from colorfield.fields import ColorWidget
 from django import forms
-dsw
 
 class Currency(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True)

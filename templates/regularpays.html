@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+      <meta charset="UTF-8">
     <link rel="shortcut icon" href="../static/img/ico.png" type="image/x-icon">
     <link rel="stylesheet" href="../static/css/homepage.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@700&display=swap">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <title>Home</title>
+    <title>Regular payments</title>
 </head>
 <body>
-<audio id="mySound" src="../static/css/sound1.mp3"></audio>
     <header>
         <div class="burger">
-            <button class="button" onclick="playSound()">
+            <button class="button">
                 <img src="../static/img/home/burger-menu.svg" alt="Menu Icon"/>
             </button>
         </div>
@@ -23,22 +22,22 @@
         </div>
         <div>
             <div>
-                <button class="button" onclick="playSound()">
+                <button class="button">
                     <img src="../static/img/home/notifications.svg" alt="Bell Icon" style="vertical-align: middle;">
                 </button>
-                <button class="button" onclick="playSound()">
+                <button class="button">
                     <img src="../static/img/home/profile.svg" alt="Search Icon" style="vertical-align: middle;">
                 </button>
             </div>
         </div>
     </header>
-    <main>
+<main>
     <div id="main-content">
         <div class="add_category">
             <div class="body_text">
-                Your categories
+                Your regular payments
             </div>
-                <button  class="button_cat" onclick="playSound()">
+                <button  class="button_cat">
                     <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44" >
 
                       <path fill-rule="evenodd" clip-rule="evenodd" d="M38.171 7.08355C46.4091 16.0145 45.8476 29.9328 36.9167 38.171C27.9858 46.4091 14.0675 45.8476 5.82927 36.9167C-2.40892 27.9858 -1.84736 14.0675 7.08355 5.82927C16.0145 -2.40892 29.9328 -1.84736 38.171 7.08355ZM7.58284 22.011C7.58284 21.1826 8.25441 20.511 9.08284 20.511H20.7834V8.8116C20.7834 7.98317 21.455 7.3116 22.2834 7.3116C23.1119 7.3116 23.7834 7.98317 23.7834 8.8116V20.511H35.4828C36.3113 20.511 36.9828 21.1826 36.9828 22.011C36.9828 22.8394 36.3113 23.511 35.4828 23.511H23.7834V35.2116C23.7834 36.04 23.1119 36.7116 22.2834 36.7116C21.455 36.7116 20.7834 36.04 20.7834 35.2116V23.511H9.08284C8.25441 23.511 7.58284 22.8394 7.58284 22.011Z" fill="#054E2B"/>
@@ -46,19 +45,19 @@
                 </button>
         </div>
         <div class="content-wrapper">
-            {% for category in categories %}
-            <button  class="created_category" style="background-color: {{ category.color_save }};" onclick="playSound()">
-                <span id="category_name">{{ category.cat_name }}</span>
+            {% for regpay in regpays %}
+            <button  class="created_category" style="background-color: {{ regpay.color_save }};" onclick="playSound()">
+                <span id="category_name">{{ regpay.reg_name }}</span>
                 <svg id="created_category_line" xmlns="http://www.w3.org/2000/svg" width="260" height="2" viewBox="0 0 260 2" fill="none">
                     <path d="M0 1L260 1" stroke="white"/>
                 </svg>
                 <div class="text-row">
-                  <span class="left-span">Limit:</span>
-                  <span class="right-span">{{ category.the_limit }}</span>
+                  <span class="left-span">Amount:</span>
+                  <span class="right-span">{{ regpay.amount }}</span>
                 </div>
                 <div class="text-row">
-                    <span class="left-span">Expended:</span>
-                  <span class="right-span">{{ category.currently_spent }}</span>
+                    <span class="left-span">Every:</span>
+                  <span class="right-span">{{ regpay.reg_date }}</span>
                 </div>
 
                 <div id="created_category_btn">
@@ -68,36 +67,39 @@
                         <path class="button" fill-rule="evenodd" clip-rule="evenodd" d="M25.993 12.0149C25.5434 12.0149 25.1789 12.3944 25.1789 12.8624V28.3388C25.1789 29.9743 23.9004 31.3051 22.3294 31.3051H4.47771C2.90671 31.3051 1.62828 29.9742 1.62828 28.3388V9.75455C1.62828 8.11909 2.90671 6.78828 4.47771 6.78828H22.3294C22.779 6.78828 23.1435 6.40881 23.1435 5.94077C23.1435 5.47273 22.779 5.09326 22.3294 5.09326H4.47771C2.00866 5.09326 0 7.18427 0 9.75455V28.3388C0 30.909 2.00866 33.0001 4.47771 33.0001H22.3294C24.7984 33.0001 26.8071 30.909 26.8071 28.3388V12.8625C26.8071 12.3945 26.4426 12.0149 25.993 12.0149Z" fill="white" transform="translate(20,180)"/>
                         <path class="button" fill-rule="evenodd" clip-rule="evenodd" d="M32.7889 0.76614C31.8074 -0.255588 30.2106 -0.255172 29.23 0.76614L15.285 15.2836C15.2664 15.3031 15.0561 15.5307 15.0016 15.6582L13.0705 20.1747C12.9333 20.4953 13.0001 20.8707 13.2386 21.1187C13.3944 21.2808 13.6027 21.3669 13.8146 21.3669C13.9262 21.3669 14.0387 21.3429 14.1453 21.2935L18.4838 19.2832C18.6058 19.2266 18.8248 19.0076 18.8436 18.9882L32.7889 4.47115C33.2643 3.97619 33.5263 3.31824 33.5263 2.61844C33.5263 1.91871 33.2643 1.26062 32.7889 0.76614ZM31.6377 3.27229L17.6923 17.7898C17.69 17.7923 17.6887 17.7952 17.6864 17.7972L15.4202 18.8475L16.429 16.4883C16.431 16.4858 16.4338 16.4845 16.4362 16.4821L30.3812 1.96466C30.7171 1.6149 31.3026 1.61531 31.6377 1.965C31.8056 2.13923 31.8981 2.37141 31.8981 2.61844C31.8981 2.86547 31.8055 3.09758 31.6377 3.27229Z" fill="white" transform="translate(20,180)"/>
                     </svg>
-                    
-                    
+
+
                 </div>
             </button>
             {% endfor %}
         </div>
-        
-        <div class="content-wrapper">
+    <div class="content-wrapper">
             <div class="form-container" id="colorful-object">
             <form method="post">
                 {% csrf_token %}
-                
+
                 <div class="input-container">
-                    <div class="text_box">Name of category</div>
-                    {{ form.cat_name }}
+                    <div class="text_box">Payment's name</div>
+                    {{ form.reg_name }}
+                </div>
+
+                <div class="text_box">Amount of payment</div>
+                <div class="input-container-date"  class="input-text" id="spent_text">
+                    {{ form.amount }}
+                    {{ form.currency }}
+                </div>
+                <div class="input-container-date" class="input-text">
+                <div class="text_box">Start date</div>
+                    {{ form.reg_date }}
                 </div>
 
                 <div class="input-container-date" class="input-text">
-                    <div class="text_box">Period of tracking</div>
-                    {{ form.date_of_rent }} – {{ form.due_date }}
-                    <div class="text_box">The limit</div>
-                    {{ form.the_limit }}
-                    {{ form.currency }}
+                    <div class="text_box">Payments every:</div>
+                    {{ form.frequency_int }}
+                    {{ form.frequency }}
                 </div>
 
-                <div class="text_box">Currently spent</div>
-                <div class="input-container-date"  class="input-text" id="spent_text">
-                    {{ form.currently_spent }}
-                </div>
-                
+
                 <div class="text_box">Background color</div>
                 <div class="input-container-color">
                     {{ form.color_save }}
@@ -112,26 +114,15 @@
             </div>
         </div>
     </div>
-        
-    </main>
+</main>
     <script src="../static/scripts/script.js"></script>
     <script src="../static/scripts/create_cat.js"></script>
-    <script>
+<script>
         function playSound() {
         var sound = document.getElementById("mySound");
         sound.currentTime = 0;
         sound.play();
         }
     </script>
-
-<script>
-    function setTextColor(block) {
-        const bgColor = window.getComputedStyle(block).backgroundColor;
-        const rgb = bgColor.match(/\d+/g);
-        const yiq = ((rgb[0]*299)+(rgb[1]*587)+(rgb[2]*114))/1000;
-        block.style.color = (yiq >= 128) ? 'black' : 'white';
-    }
-    setTextColor(document.getElementById('colorful-object'));
-</script>
 </body>
 </html>

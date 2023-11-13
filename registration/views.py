@@ -58,3 +58,7 @@ def LogoutPage(request):
 
 def landing_page(request):
     return render(request, 'landing.html')
+
+
+def regpay_page(request):
+    return render(request, 'regularpays.html')

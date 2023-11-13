@@ -11,8 +11,8 @@ class CategoryCreateForm(forms.ModelForm):
         fields = ['cat_name', 'the_limit', 'currently_spent', 'date_of_rent', 'due_date', 'currency', 'color_save']
         widgets = {
             'cat_name': forms.TextInput(attrs={'placeholder': 'Enter category name', 'class': 'input-text'}),
-            'the_limit': forms.NumberInput(attrs={'class':'input-text', 'type':"text", 'id':"limit"}),
-            'currently_spent': forms.NumberInput(attrs={'class':"input-text", 'type':"text", 'id':"spent"}),
+            'the_limit': forms.NumberInput(attrs={'placeholder': '0', 'class':'input-text', 'type':"text", 'id':"limit"}),
+            'currently_spent': forms.NumberInput(attrs={'placeholder': '0', 'class':"input-text", 'type':"text", 'id':"spent"}),
             'date_of_rent': forms.DateInput(attrs={'type': 'date','id':'start-date', 'class': 'input-text'}),
             'due_date': forms.DateInput(attrs={'type': 'date','id':'end-date', 'class': 'input-text'}),
             'currency': forms.Select(choices=CURRENCIES, attrs={'class': 'custom-dropdown', 'id':'currency'}),

@@ -16,14 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from registration import views
+from registration.views import signup_page, LoginPage, home_page, LogoutPage, landing_page
+from reg_pay.views import regpay_page
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('signup/',views.signup_page, name='signup'),
-    path('login/', views.LoginPage, name='login'),
-    path('home/', views.home_page, name='home'),
-    path('logout/', views.LogoutPage, name='logout'),
-    path('', views.landing_page, name="landing"),
+    path('signup/', signup_page, name='signup'),
+    path('login/', LoginPage, name='login'),
+    path('home/', home_page, name='home'),
+    path('logout/', LogoutPage, name='logout'),
+    path('', landing_page, name="landing"),
+    path('regularpays/', regpay_page, name='regularpays'),
 ]
 #category_create_view

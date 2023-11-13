@@ -13,8 +13,8 @@ class Currency(models.Model):
 class Category(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     cat_name = models.CharField(max_length=30)
-    the_limit = models.IntegerField(default=0)
-    currently_spent = models.IntegerField(default=0)
+    the_limit = models.IntegerField(default=None)
+    currently_spent = models.IntegerField(default=None)
     date_of_rent = models.DateTimeField("Date of rent")
     due_date = models.DateTimeField("Due date")
     currency = models.CharField(max_length=30)

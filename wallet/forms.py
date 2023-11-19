@@ -1,6 +1,9 @@
 from django import forms
 from .models import Category, Color_class
 from django.contrib.auth.models import User
+from django.utils import timezone
+import datetime
+from django.core.exceptions import ValidationError
 
 CURRENCIES = [('UAN', 'UAN'), ('USD', 'USD'), ('EUR', 'EUR')]
 
@@ -18,6 +21,17 @@ class CategoryCreateForm(forms.ModelForm):
             'currency': forms.Select(choices=CURRENCIES, attrs={'class': 'custom-dropdown', 'id':'currency'}),
             'color_save': forms.TextInput(attrs={'type':"color", 'id':"bg-color", 'style':"width: 3px; height: 3px; border-radius: 360px"})
         }
+    def clean_date_of_rent(self):
+       data = self.cleaned_data['date_of_rent']
+       if data < datetime.date.today():
+            raise ValidationError(('Invalid date - impossible to create until today'))
+       return data
+    
+    def clean_due_date(self):
+       data = self.cleaned_data['due_date']
+       if data < datetime.date.today():
+            raise ValidationError(('Invalid date - impossible to create due today'))
+       return data
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)  
@@ -27,3 +41,5 @@ class CategoryCreateForm(forms.ModelForm):
         cleaned_data = super(CategoryCreateForm, self).clean()
         cleaned_data['user'] = self.request.user  
         return cleaned_data
+    
+    

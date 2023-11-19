@@ -1,28 +1,43 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.views.decorators.csrf import csrf_protect
-
-from .forms import CategoryCreateForm
-from .models import Category
+from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login, logout
+from django.contrib.auth.decorators import login_required
+from wallet.forms import CategoryCreateForm
+from wallet.models import Category
 
-
-@login_required
-def category_create_view(request):
+@login_required(login_url='login')
+def home_page(request):
+    form = CategoryCreateForm()
+    categories = Category.objects.filter(user=request.user)
+    id = 0
     if request.method == 'POST':
-        form = CategoryCreateForm(request.POST, request=request)
-        if form.is_valid():
-            form.save()
-
-            # Обновляем контекст шаблона
-            context = {
-                'form': CategoryCreateForm(),
-            }
-            return render(request, 'homepage.html', context)
-    else:
-        form = CategoryCreateForm()
-
+        if 'save' in request.POST:
+            pk = request.POST.get('save')
+            if pk is None or pk == '0':
+                form = CategoryCreateForm(request.POST, request=request) 
+            else:
+                category = Category.objects.get(id=pk)
+                form = CategoryCreateForm(request.POST, instance=category, request=request)  
+            if form.is_valid():
+                    category = form.save(commit=False)
+                    category.user = request.user  
+                    category.save()
+                    return redirect('home')
+        elif 'delete' in request.POST:
+            pk = request.POST.get('delete')
+            print(pk)
+            category = Category.objects.get(id=pk)
+            category.delete()
+        elif 'edit' in request.POST:
+            pk = request.POST.get('edit')
+            category = Category.objects.get(id=pk)
+            form = CategoryCreateForm(instance=category)
+            id = pk
+            
     context = {
+        'categories': categories,
         'form': form,
+        'id':id,
+        
     }
     return render(request, 'homepage.html', context)

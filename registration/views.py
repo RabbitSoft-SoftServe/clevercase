@@ -5,26 +5,7 @@ from django.contrib.auth.decorators import login_required
 from wallet.forms import CategoryCreateForm
 from wallet.models import Category
 
-@login_required(login_url='login')
-def home_page(request):
-    print("home_page")
-    if request.method == 'POST':
-        form = CategoryCreateForm(request.POST, request=request)
-        if form.is_valid():
-            category = form.save(commit=False)  # Создаем объект, но не сохраняем его в базу данных
-            category.user = request.user  # Устанавливаем поле 'user'
-            category.save()  # Теперь сохраняем в базу данных
 
-            return redirect('home')
-    else:
-        form = CategoryCreateForm()
-
-    categories = Category.objects.filter(user=request.user)
-    context = {
-        'categories': categories,
-        'form': form,
-    }
-    return render(request, 'homepage.html', context)
   
 def signup_page(request):
     if request.method == 'POST':

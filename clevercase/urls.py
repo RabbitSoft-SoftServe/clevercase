@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from registration.views import signup_page, LoginPage, home_page, LogoutPage, landing_page
+from registration.views import signup_page, LoginPage,  LogoutPage, landing_page
+from wallet.views import home_page
 from reg_pay.views import regpay_page
 
 

@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .forms import RegpayCreateForm
 from .models import Regpay
@@ -9,16 +9,15 @@ def regpay_page(request):
     if request.method == 'POST':
         form = RegpayCreateForm(request.POST, request=request)
         if form.is_valid():
-            form.save()
-
-            context = {
-                'form': RegpayCreateForm(),
-            }
-            return render(request, 'regularpays.html', context)
+            regpay = form.save(commit=False)
+            regpay.user = request.user
+            regpay.save()
+            return redirect('regularpays')
     form = RegpayCreateForm()
     regpays = Regpay.objects.filter(user=request.user)
+    print(regpays)
     context = {
         'form': form,
-        'regpay': regpays,
+        'regpays': regpays,
     }
     return render(request, 'regularpays.html', context)

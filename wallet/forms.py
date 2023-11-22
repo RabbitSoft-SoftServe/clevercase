@@ -11,7 +11,7 @@ CURRENCIES = [('UAN', 'UAN'), ('USD', 'USD'), ('EUR', 'EUR')]
 class CategoryCreateForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = ['cat_name', 'the_limit', 'currently_spent', 'date_of_rent', 'due_date', 'color_save']
+        fields = ['cat_name', 'the_limit', 'currently_spent', 'date_of_rent', 'due_date','currency', 'color_save']
         widgets = {
             'cat_name': forms.TextInput(attrs={'placeholder': 'Enter category name', 'class': 'input-text'}),
             'the_limit': forms.NumberInput(attrs={'placeholder': '0', 'class':'input-text', 'type':"text", 'id':"limit"}),

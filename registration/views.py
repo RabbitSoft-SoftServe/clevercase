@@ -94,6 +94,7 @@ def debts_menu(request):
                     debt.user = request.user
                     debt.save()
                     return redirect('debts')
+
     my_debts = MyDebts.objects.filter(user=request.user)
     others_debts = OthersDebts.objects.filter(user=request.user)
     context = {

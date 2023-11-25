@@ -105,3 +105,4 @@ class OthersDebtsCreateForm(forms.ModelForm):
         cleaned_data = super(OthersDebtsCreateForm, self).clean()
         cleaned_data['user'] = self.request.user
         return cleaned_data
+

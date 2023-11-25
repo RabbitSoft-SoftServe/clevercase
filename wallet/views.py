@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from wallet.forms import CategoryCreateForm
 from wallet.models import Category
 
+
 @login_required(login_url='login')
 def home_page(request):
     form = CategoryCreateForm()
@@ -37,7 +38,7 @@ def home_page(request):
     context = {
         'categories': categories,
         'form': form,
-        'id':id,
+        'id': id,
         
     }
     return render(request, 'homepage.html', context)

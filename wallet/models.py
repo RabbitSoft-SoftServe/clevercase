@@ -34,6 +34,7 @@ class MyDebts(models.Model):
     date_of_borrowing = models.DateTimeField(default=datetime.datetime.now(), blank=True)
     debt_repayment_date = models.DateTimeField(null=True, blank=True)
     creditor_name = models.CharField(max_length=30)
+    is_closed = models.BooleanField(default=False)
 
 
 class OthersDebts(models.Model):
@@ -43,3 +44,4 @@ class OthersDebts(models.Model):
     date_of_borrowing = models.DateTimeField(default=datetime.datetime.now(), blank=True)
     debt_repayment_date = models.DateTimeField(null=True, blank=True)
     debtor_name = models.CharField(max_length=30)
+    is_closed = models.BooleanField(default=False)

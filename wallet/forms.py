@@ -51,16 +51,25 @@ class MyDebtsCreateForm(forms.ModelForm):
         model = MyDebts
         fields = ['debt_amount', 'currency', 'date_of_borrowing', 'debt_repayment_date', 'creditor_name']
         widgets = {
-            'debt_amount': forms.NumberInput(attrs={'placeholder': 'Enter debt amount'}),
-            'currency': forms.Select(choices=Currency.choices, attrs={'class': 'custom-dropdown', 'id':'currency'}),
-            'date_of_borrowing': forms.DateInput(attrs={'type': 'date'}),
-            'debt_repayment_date': forms.DateInput(attrs={'type': 'date'}),
-            'creditor_name': forms.TextInput(attrs={'placeholder': 'Enter creditors name'})
+            'debt_amount': forms.NumberInput(attrs={'id': 'my-debt-amount'}),
+            'currency': forms.Select(choices=Currency.choices, attrs={'class': 'custom-dropdown',
+                                                                      'id': 'my-debt-currency'}),
+            'date_of_borrowing': forms.DateInput(attrs={'type': 'date', 'id': 'my-debt-date-of-borrowing',
+                                                        'required': True}),
+            'debt_repayment_date': forms.DateInput(attrs={'type': 'date', 'id': 'my-debt-repayment-date'}),
+            'creditor_name': forms.TextInput(attrs={'placeholder': 'Enter creditors name',
+                                                    'id': 'my-debt-creditor-name'})
         }
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(MyDebtsCreateForm, self).__init__(*args, **kwargs)
+
+    def clean_debt_amount(self):
+        debt_amount = self.cleaned_data.get('debt_amount')
+        if debt_amount <= 0:
+            raise forms.ValidationError('The amount of debt must be greater than zero')
+        return debt_amount
 
     def clean(self):
         cleaned_data = super(MyDebtsCreateForm, self).clean()
@@ -73,18 +82,29 @@ class OthersDebtsCreateForm(forms.ModelForm):
         model = OthersDebts
         fields = ['debt_amount', 'currency', 'date_of_borrowing', 'debt_repayment_date', 'debtor_name']
         widgets = {
-            'debt_amount': forms.NumberInput(attrs={'placeholder': '0'}),
-            'currency': forms.Select(choices=Currency.choices, attrs={'class': 'custom-dropdown', 'id': 'currency'}),
-            'date_of_borrowing': forms.DateInput(attrs={'type': 'date'}),
-            'debt_repayment_date': forms.DateInput(attrs={'type': 'date'}),
-            'creditor_name': forms.TextInput(attrs={'placeholder': 'Enter creditors name'})
+            'debt_amount': forms.NumberInput(attrs={'placeholder': '0', 'id': 'others-debt-amount'}),
+            'currency': forms.Select(choices=Currency.choices, attrs={'class': 'custom-dropdown',
+                                                                      'id': 'others-debt-currency'}),
+            'date_of_borrowing': forms.DateInput(attrs={'type': 'date',
+                                                        'id': 'others-debt-date-of-borrowing',
+                                                        'required': True}),
+            'debt_repayment_date': forms.DateInput(attrs={'type': 'date', 'id': 'others-debt-repayment-date'}),
+            'creditor_name': forms.TextInput(attrs={'placeholder': 'Enter debtors name',
+                                                    'id': 'others-debt-creditor-name'})
         }
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(OthersDebtsCreateForm, self).__init__(*args, **kwargs)
 
+    def clean_debt_amount(self):
+        debt_amount = self.cleaned_data.get('debt_amount')
+        if debt_amount <= 0:
+            raise forms.ValidationError('The amount of debt must be greater than zero')
+        return debt_amount
+
     def clean(self):
         cleaned_data = super(OthersDebtsCreateForm, self).clean()
         cleaned_data['user'] = self.request.user
         return cleaned_data
+

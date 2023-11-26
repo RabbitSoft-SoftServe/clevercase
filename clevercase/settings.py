@@ -70,6 +70,8 @@ TEMPLATES = [
     },
 ]
 TIME_ZONE = 'Europe/Kiev'
+USE_TZ = True
+
 WSGI_APPLICATION = 'clevercase.wsgi.application'
 
 

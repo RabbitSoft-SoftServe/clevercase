@@ -29,6 +29,7 @@ def home_page(request):
             category = Category.objects.get(id=pk)
             category.delete()
         elif 'edit' in request.POST:
+            print("hay")
             pk = request.POST.get('edit')
             category = Category.objects.get(id=pk)
             form = CategoryCreateForm(instance=category)

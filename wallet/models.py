@@ -20,7 +20,7 @@ class Category(models.Model):
     date_of_rent = models.DateField("Date of rent", default=timezone.now)
     currency = models.CharField(max_length=2, choices=Currency.choices, default=Currency.UAH)
     due_date = models.DateField("Due date")
-    color_save = models.CharField(default="#0c854b66", max_length=100, blank=False)
+    color_save = models.CharField(default="rgba(176,151,218,255)", max_length=100, blank=False)
 
 
     def __str__(self):

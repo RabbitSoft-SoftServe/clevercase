@@ -37,6 +37,8 @@ class CategoryCreateForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)  
         super(CategoryCreateForm, self).__init__(*args, **kwargs)
+        self.fields['date_of_rent'].initial = datetime.date.today()
+        self.fields['color_save'].initial = "#b097da"
 
     def clean(self):
         cleaned_data = super(CategoryCreateForm, self).clean()

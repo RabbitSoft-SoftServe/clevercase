@@ -23,16 +23,20 @@ class CategoryCreateForm(forms.ModelForm):
         }
 
     def clean_date_of_rent(self):
-       data = self.cleaned_data['date_of_rent']
-       if data < datetime.date.today():
-            raise ValidationError(('Invalid date - impossible to create until today'))
-       return data
-    
+        data = self.cleaned_data['date_of_rent']
+        if not self.is_editing:  # Проверьте, что форма не используется для редактирования
+            
+            if data < datetime.date.today():
+                raise ValidationError('Invalid date - impossible to create until today')
+        return data
+
     def clean_due_date(self):
-       data = self.cleaned_data['due_date']
-       if data < datetime.date.today():
-            raise ValidationError(('Invalid date - impossible to create due today'))
-       return data
+        data = self.cleaned_data['due_date']
+        if not self.is_editing:  # Проверьте, что форма не используется для редактирования
+            
+            if data < datetime.date.today():
+                raise ValidationError('Invalid date - impossible to create due today')
+        return data
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)  

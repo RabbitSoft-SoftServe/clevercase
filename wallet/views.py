@@ -14,16 +14,21 @@ def home_page(request):
     if request.method == 'POST':
         if 'save' in request.POST:
             pk = request.POST.get('save')
+            print(pk)
             if pk is None or pk == '0':
                 form = CategoryCreateForm(request.POST, request=request) 
             else:
                 category = Category.objects.get(id=pk)
                 form = CategoryCreateForm(request.POST, instance=category, request=request)  
+                form.is_editing = True
             if form.is_valid():
+                    print("not valid wft")
                     category = form.save(commit=False)
                     category.user = request.user  
                     category.save()
                     return redirect('home')
+            else:
+                print(form.errors)
         elif 'delete' in request.POST:
             pk = request.POST.get('delete')
             print(pk)

@@ -102,10 +102,10 @@
                             {{ form.color_save }}
                         </div>
                         <div class="container">
-                            <button class="submit-btn" value="{{ id }}" name="save" onclick="playSound()">Save
+                            <button class="submit-btn" value="{{ id }}" name="save">Save
                                 changes</button>
                         </div>
-                        <button formnovalidate type="button" class="close-button">
+                        <button formnovalidate  class="close-button">
                             <img src="../static/img/home/close.svg" alt="Close"
                                 style="vertical-align: middle; position: absolute;right: 15px;top: 15px;">
                         </button>
@@ -116,16 +116,25 @@
         </div>
     </main>
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var div = document.getElementById('colorful-object');
+            var displayState = localStorage.getItem('displayState');
+            if (displayState) {
+                div.style.display = displayState;
+            }
+        });
         document.addEventListener('DOMContentLoaded', (event) => {
             function toggleVisibility() {
                 var div = document.getElementById('colorful-object');
                 if (div.style.display === 'none' || div.style.display === '') {
                     div.style.display = 'block';
+                    localStorage.setItem('displayState', 'block');
                 } else {
                     div.style.display = 'none';
+                    localStorage.setItem('displayState', 'none');
                 }
             }
-            document.querySelectorAll('.category-action, .category-edit, .button-cat, .close-button').forEach(button => {
+            document.querySelectorAll('.category-action, .category-edit, .button-cat, .close-button, .submit-btn').forEach(button => {
                 button.addEventListener('click', toggleVisibility);
             });
         });

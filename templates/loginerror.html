@@ -170,6 +170,10 @@
             <button type="submit" class="submit-btn">Log in</button>
         </div>
 
+        <div class="alternate-option">
+            Don't have an account? <a href="{% url 'signup' %}" class="log-in">Sign up</a>
+        </div>
+
         {{ form.errors }}
     </form>
 

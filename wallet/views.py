@@ -19,7 +19,7 @@ def home_page(request):
                 form = CategoryCreateForm(request.POST, request=request) 
             else:
                 category = Category.objects.get(id=pk)
-                form = CategoryCreateForm(request.POST, instance=category, request=request)  
+                form = CategoryCreateForm(request.POST, instance=category, request=request,  is_editing=True)  
                 form.is_editing = True
             if form.is_valid():
                     print("not valid wft")

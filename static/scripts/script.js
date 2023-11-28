@@ -23,11 +23,5 @@ function playSound() {
     sound.currentTime = 0;
     sound.play();
 }
-function setTextColor(block) {
-    const bgColor = window.getComputedStyle(block).backgroundColor;
-    const rgb = bgColor.match(/\d+/g);
-    const yiq = ((rgb[0]*299)+(rgb[1]*587)+(rgb[2]*114))/1000;
-    block.style.color = (yiq >= 128) ? 'black' : 'white';
-}
-setTextColor(document.getElementById('colorful-object'));
+
 

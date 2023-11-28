@@ -22,10 +22,23 @@ class CategoryCreateForm(forms.ModelForm):
             'color_save': forms.TextInput(attrs={'type':"color", 'id':"bg-color", 'style':"width: 3px; height: 3px; border-radius: 360px"})
         }
 
+    def clean_the_limit(self):
+        data = self.cleaned_data['the_limit']
+        if not self.is_editing:  
+            if data <= 0 or not isinstance(data,int):
+                raise ValidationError('Invalid data, must be more or equal zero and be integer')
+        return data
+    
+    def clean_currently_spent(self):
+        data = self.cleaned_data['currently_spent']
+        if not self.is_editing:  
+            if data < 0 or not isinstance(data,int):
+                raise ValidationError('Invalid data, must be more than zero and be integer')
+        return data
+
     def clean_date_of_rent(self):
         data = self.cleaned_data['date_of_rent']
         if not self.is_editing:  
-            
             if data < datetime.date.today():
                 raise ValidationError('Invalid date - impossible to create until today')
         return data
@@ -34,9 +47,9 @@ class CategoryCreateForm(forms.ModelForm):
         data = self.cleaned_data['due_date']
         if not self.is_editing:  
             if data < datetime.date.today():
-                raise ValidationError('Invalid date - impossible to create due today')
+                raise ValidationError('Invalid date - impossible to set due today')
         if data < self.cleaned_data['date_of_rent']:
-                raise ValidationError('Invalid date - impossible to create due today')
+                raise ValidationError('Invalid date - impossible to set due today')
         return data
 
     def __init__(self, *args, **kwargs):

@@ -22,7 +22,6 @@ def home_page(request):
                 form = CategoryCreateForm(request.POST, instance=category, request=request,  is_editing=True)  
                 form.is_editing = True
             if form.is_valid():
-                    print("not valid wft")
                     category = form.save(commit=False)
                     category.user = request.user  
                     category.save()

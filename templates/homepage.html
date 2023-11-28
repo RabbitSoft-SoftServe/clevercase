@@ -52,12 +52,12 @@
                 <div class="content-wrapper">
 
                     {% for category in categories %}
-                    <div class="category-card" style="background-color: {{ category.color_save }}">
+                    <div class="category-card" data-bgcolor="{{ category.color_save }}" style="background-color: {{ category.color_save }}">
                         <div class="category-text-content">
                             <div class="category-header">
-                                <span class="category-title">{{ category.cat_name }}</span>
+                                <span class="category-title" data-bgcolor="{{ category.color_save }}">{{ category.cat_name }}</span>
                             </div>
-                            <div class="category-content">
+                            <div class="category-content" data-bgcolor="{{ category.color_save }}">
                                   <div class="category-limit">
                                     <span class="limit-label">Limit:</span>
                                     <span class="limit-value">{{ category.the_limit }} {{ category.currency }}</span>
@@ -69,8 +69,8 @@
                             </div>
                         </div>
                         <div class="right-buttons">
-                            <button formnovalidate class="category-action" ><img src="../static/img/home/plus-circle.svg"></button>
-                            <button formnovalidate class="category-edit" name="edit"  value="{{ category.id }}" ><img src="../static/img/home/pencil.svg"></button>
+                            <button formnovalidate class="category-action" ><img data-bgcolor="{{ category.color_save }}" class="category-action-image" src="../static/img/home/plus-circle.svg"></button>
+                            <button formnovalidate class="category-edit" name="edit"  value="{{ category.id }}" ><img data-bgcolor="{{ category.color_save }}" class="category-edit-image" src="../static/img/home/pencil.svg"></button>
                         </div>
                     </div>
                     {% endfor %}
@@ -86,22 +86,23 @@
 
                         <div class="input-container-date" class="input-text">
                             <div class="text_box">Period of tracking</div>
-                            {{ form.date_of_rent }} – {{ form.due_date }}
+                            {{ form.date_of_rent }} – {{ form.due_date }} {{ form.due_date.errors.as_ul }}
                             <div class="text_box">The limit</div>
                             {{ form.the_limit }}
                             {{ form.currency }}
+                            {{ form.the_limit.errors.as_ul }}
                         </div>
 
                         <div class="text_box">Currently spent</div>
                         <div class="input-container-date" class="input-text" id="spent_text">
-                            {{ form.currently_spent }}
+                            {{ form.currently_spent }} {{ form.currently_spent.errors.as_ul }}
                         </div>
 
-                        <div class="text_box">Background color</div>
-                        <div class="input-container-color">
+                        <div class="text_box" data-error-count="{{ form.errors|length }}" id="error-count">Background color</div>
+                        <div class="input-container-color" >
                             {{ form.color_save }}
                         </div>
-                        <div class="container">
+                        <div class="container" >
                             <button class="submit-btn" value="{{ id }}" name="save">Save
                                 changes</button>
                         </div>
@@ -117,27 +118,85 @@
     </main>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.category-card').forEach(card => {
+                const bgColor = card.getAttribute('data-bgcolor');
+                const textColor = getContrastYIQ(bgColor);
+                card.style.color = textColor;
+            });
+            document.querySelectorAll('.category-title').forEach(card => {
+                const bgColor = card.getAttribute('data-bgcolor');
+                const textColor = getContrastYIQ(bgColor);
+                card.style.color = textColor;
+            });
+            document.querySelectorAll('.category-content').forEach(card => {
+                const bgColor = card.getAttribute('data-bgcolor');
+                const textColor = getContrastYIQ(bgColor);
+                card.style.setProperty('--border-top-color', textColor);
+            });
+            document.querySelectorAll('.category-action-image').forEach(card => {
+                if (card.hasAttribute('data-bgcolor')) {
+                    const bgColor = card.getAttribute('data-bgcolor');
+                    const textColor = getContrastYIQ(bgColor);
+                    if (textColor == 'black') {
+                        card.src = "../static/img/home/black-plus.svg";
+                    }
+                }
+            });
+            document.querySelectorAll('.category-edit-image').forEach(card => {
+                if (card.hasAttribute('data-bgcolor')) {
+                    const bgColor = card.getAttribute('data-bgcolor');
+                    const textColor = getContrastYIQ(bgColor);
+                    if (textColor == 'black') {
+                        card.src = "../static/img/home/black-pencil.svg";
+                    }
+                }
+            });
             var div = document.getElementById('colorful-object');
             var displayState = localStorage.getItem('displayState');
-            if (displayState) {
-                div.style.display = displayState;
+            var errorCountElement = document.getElementById('error-count');
+            var errorCount = errorCountElement.getAttribute('data-error-count');
+            console.log(errorCount)
+            if(errorCount == 0) {
+                if (displayState) {
+                    div.style.display = displayState;
+                }
+            }else{
+                div.style.display = 'block';
+                displayState = 'block';
             }
         });
         document.addEventListener('DOMContentLoaded', (event) => {
             function toggleVisibility() {
                 var div = document.getElementById('colorful-object');
-                if (div.style.display === 'none' || div.style.display === '') {
-                    div.style.display = 'block';
-                    localStorage.setItem('displayState', 'block');
-                } else {
-                    div.style.display = 'none';
-                    localStorage.setItem('displayState', 'none');
+                var errorCountElement = document.getElementById('error-count');
+                var errorCount = errorCountElement.getAttribute('data-error-count');
+                console.log(errorCount)
+                if(errorCount == 0) {
+                    console.log("mm")
+                    if (div.style.display === 'none' || div.style.display === '') {
+                        div.style.display = 'block';
+                        localStorage.setItem('displayState', 'block');
+                    } else {
+                        div.style.display = 'none';
+                        localStorage.setItem('displayState', 'none');
+                    }
                 }
             }
             document.querySelectorAll('.category-action, .category-edit, .button-cat, .close-button, .submit-btn').forEach(button => {
                 button.addEventListener('click', toggleVisibility);
             });
         });
+
+        function getContrastYIQ(hexcolor){
+            hexcolor = hexcolor.replace("#", "");
+            var r = parseInt(hexcolor.substr(0,2),16);
+            var g = parseInt(hexcolor.substr(2,2),16);
+            var b = parseInt(hexcolor.substr(4,2),16);
+            var yiq = ((r*299)+(g*587)+(b*114))/1000;
+            return (yiq >= 180) ? 'black' : 'white';
+        }
+
+        
     </script>
     <script src="../static/scripts/create_cat.js"></script>
     <script src="../static/scripts/script.js"></script>

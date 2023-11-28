@@ -311,14 +311,14 @@ body {
         .form-container {
             display: none;
             position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            margin-top: 50px;
-            margin-left: 253px;
+            left: 50%;
+            
+            top: 50%;
+            
+            transform: translate(-50%, -50%);
             width: 982px;
-            height: 570px;
+            min-height: 570px;
+            height: auto;
             background: #88bca4;
             border-radius: 36px;
             box-shadow: -1px 8px 24px 6px #00000040;
@@ -504,16 +504,17 @@ body {
             padding-top: 15px;
             display: flex; /* Add this line to make it a flex container */
             flex-direction: column;
-            
+            --border-top-color: white;
           }
           .category-content::before {
             content: '';
             position: absolute;
-            top: 0; /* Aligns the pseudo-element with the top of the container */
-            left: 15px; /* Starts 10px from the left side */
-            right: 40px; /* Ends 10px from the right side */
-            border-top: 2px solid white; /* The border you want to shorten */
-            width: calc(100% - 55px); /* Makes the element's width 100% of the container minus 20px */
+            top: 0; 
+            left: 15px; 
+            right: 40px; 
+            border-top: 2px solid;
+            border-top-color: var(--border-top-color); 
+            width: calc(100% - 55px); 
           }
           category-text-content {
             flex-grow: 1;
@@ -586,6 +587,11 @@ body {
                 margin-bottom: 28px;
                 margin-top: 28px;
                 
+            }
+
+            .errorlist{
+                list-style: none;
+                color: red;
             }
 
         

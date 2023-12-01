@@ -1,9 +1,48 @@
-/* Landing */
+/* Main */
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    font-family: 'Montserrat', sans-serif;
+
+    background: linear-gradient(180deg, #005C30 0%, #E8E8E8 100%);
+}
+
+/* Header */
+header {
+    display: flex;
+    
+    width: 100%;
+    min-height: 72px;
+    max-height: 72px;
+
+    background: #054E2B;
+}
+
+.desktop-logo {
+    margin: auto;
+}
+
+.desktop-logo:hover {
+    cursor: pointer;
+}
+
 .add-account-container {
     position: absolute;
     min-width: 72px;
+    max-width: 72px;
     min-height: 72px;
-    right: 26px;
+    max-height: 72px;
+    right: 2vw;
     top: 0px;
 
     display: flex;
@@ -22,6 +61,12 @@
 }
 
 .add-account {
+    width: 60px;
+    position: relative;
+    top: 4px;
+}
+
+.add-account-pop-up {
     box-sizing: border-box;
     position: absolute;
     flex-direction: row;
@@ -34,36 +79,42 @@
     background: rgba(255, 255, 255, 0.4);
     box-shadow: -1px 8px 24px 6px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(12px);
-    /* Note: backdrop-filter has minimal browser support */
     border-radius: 36px;
     display: none;
+
+    font-size: 1vw;
+    text-wrap: nowrap;
 
     transition-property: opacity;
     transition-timing-function: ease;
     transition-duration: 0.5s;
 }
 
-.add-account.is-active {
+.add-account-pop-up.is-active {
     z-index: 2;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.add-account:hover {
+.add-account-pop-up:hover {
     cursor: pointer;
     background: rgba(172, 172, 172, 0.4);
 }
 
-.add-account-text {
+.add-account-plus {
+    margin-left: 0.2vw;
+    width: 4vw;
+}
+
+.add-account-pop-up-text {
     margin-right: 2vw;
     margin-left: 1vw;
     color: #E8E8E8;
 }
-/* Everything under navigation */
-.under-nav {
+/* Main */
+main {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
 
     width: 100%;
@@ -77,14 +128,11 @@
     align-items: center;
 
     width: 40vw;
-    height: 100%;
 
     background: rgba(30, 30, 30, 0.8);
-
-
 }
 
-@keyframes textAppear {
+@keyframes opacityAppear {
     from {
         opacity: 0;
     }
@@ -101,7 +149,7 @@
     text-align: center;
 
     color: #E8E8E8;
-    animation-name: textAppear;
+    animation-name: opacityAppear;
     animation-timing-function: ease-out;
     animation-duration: 1s;
 }
@@ -115,7 +163,7 @@
 
     border: 0.4vw solid #E8E8E8;
 
-    animation-name: textAppear;
+    animation-name: opacityAppear;
     animation-timing-function: ease-out;
     animation-duration: 1s;
 }
@@ -130,7 +178,7 @@
 
     color: #E8E8E8;
 
-    animation-name: textAppear;
+    animation-name: opacityAppear;
     animation-timing-function: ease-out;
     animation-duration: 1s;
 }
@@ -142,7 +190,6 @@
     align-items: center;
 }
 
-
 .box {
     box-sizing: border-box;
 
@@ -151,7 +198,7 @@
     justify-content: center;
 
     width: 25vw;
-    height: 16%;
+    height: 17%;
 
     box-shadow: 12px 10px 4px rgba(0, 0, 0, 0.5);
     border-radius: 36px;
@@ -233,7 +280,6 @@
     animation-timing-function: ease-out;
 }
 
-
 .box-1-side {
     background: #089A54;
 }
@@ -263,179 +309,189 @@
     }
 }
 
-/* Main */
-html,
-body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-
-    font-family: 'Montserrat', sans-serif;
-
-    background: #E8E8E8;
-}
-
-.main-page {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, #005C30 0%, rgba(0, 92, 48, 0) 100%);
-}
-/* Navigation */
-.nav {
-    display: flex;
-    flex-direction: row;
-
-    width: 100%;
-    min-height: 72px;
-
-    top: 0px;
-    left: 0px;
-
-    background: #054E2B;
-
-}
-
-.menu-container {
-    position: relative;
-    min-width: 72px;
-    min-height: 72px;
-    top: 0px;
-    left: 26px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #054E2B;
-
-    transition-property: background-color;
-    transition-timing-function: ease;
-    transition-duration: 0.2s;
-}
-
-.menu-container:hover {
-    background: #252525;
-    cursor: pointer;
-}
-
-.desktop-logo {
-    margin: auto;
-}
-
-.desktop-logo:hover {
-    cursor: pointer;
-}
-
-.notifications-container {
-    position: relative;
-    width: 72px;
-    height: 72px;
-    top: 0px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #054E2B;
-
-    transition-property: background-color;
-    transition-timing-function: ease;
-    transition-duration: 0.2s;
-}
-
-.notifications-container:hover {
-    background: #252525;
-    cursor: pointer;
-}
-
-.profile-container {
-    position: relative;
-    min-width: 72px;
-    min-height: 72px;
-    margin-right: 26px;
-    top: 0px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #054E2B;
-
-    transition-property: background-color;
-    transition-timing-function: ease;
-    transition-duration: 0.2s;
-}
-
-.profile-container:hover {
-    background: #252525;
-    cursor: pointer;
-}
-
-/* Open buttons*/
-.open-menu {
-    box-sizing: border-box;
-
-    margin: auto;
-    width: 85vw;
-    height: 0vh;
-
-    background: rgba(255, 255, 255, 0.4);
-    box-shadow: -1px 8px 24px 6px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(12px);
-    opacity: 0;
-    /* Note: backdrop-filter has minimal browser support */
-    border-radius: 36px;
-    display: none;
-
-    transition-property: opacity;
-    transition-timing-function: ease;
-    transition-duration: 0.5s;
-}
-
-.open-menu.is-active {
-    display: block;
-    opacity: 100;
-    height: 80vh;
-}
-
-
-
-/* Responsiveness*/
-@media screen and (max-width: 620px) {
+/* Tablet*/
+@media screen and (max-width: 620px), (max-aspect-ratio: 4/3) { 
     .desktop-logo {
         margin-left: 12%;
         margin-right: 15%;
     }
-    .menu-container {
-        left: 0px;
+
+    .add-account {
+        height: 8vw;
     }
-    .notifications-container {
-        display: none;
-    }
-    .profile-container {
-        display: none;
-    }
+
     .add-account.is-active {
         flex-direction: column;
 
         margin-right: auto;
         margin-left: auto;
+
         width: 50vw;
     }
+
+    .add-account-plus {
+        margin-left: 1vw;
+        width: 6vw;
+    }
+
+    .add-account-pop-up-text {
+        font-size: 3vw;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    .landing-left {
+        width: 100%;
+        min-height: 40%;
+    }
+
+    .main-text {
+        width: 60vw;
+        font-size: 5vw;
+    }
+
+    .landing-mid {
+        width: 100%;
+        height: 60%;
+        gap: 1vh;
+    }
+
+    .box {
+        width: 100%;
+        height: 18%;
+
+        box-shadow: none;
+        border-radius: 0px;
+
+        animation-name: opacityAppear;
+        animation-delay: 0.1s;
+        animation-duration: 0.5s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: backwards;
+    }
+
+    .box-2 {
+        animation-delay: 0.2s;
+    }
+
+    .box-3 {
+        animation-delay: 0.3s;
+    }
+
+    .box-4 {
+        animation-delay: 0.4s;
+    }
+
+    .box-5 {
+        animation-delay: 0.5s;
+    }
+
+    .box-text {
+        text-align: left;
+        padding-left: 4vw;
+
+        max-height: 12vh;
+
+        font-family: 'Montserrat';
+        font-weight: 700;
+        font-size: 4vw;
+        
+    }
+
+    .landing-right {
+        display: none;
+    }
+
+    @media screen and (max-aspect-ratio: 3/4) { 
+        
+        .add-account {
+            height: 8vw;
+        }
+    
+        .add-account.is-active {
+            flex-direction: column;
+    
+            margin-right: auto;
+            margin-left: auto;
+    
+            width: 50vw;
+        }
+    
+        .add-account-plus {
+            margin-left: 1vw;
+            width: 8vw;
+        }
+    
+        .add-account-pop-up-text {
+            font-size: 5vw;
+        }
+
+        .main-text {
+            width: 60vw;
+            font-size: 5vw;
+        }
+
+        .box-text {
+            text-align: left;
+            padding-left: 4vw;
+    
+            max-height: 12vh;
+    
+            font-family: 'Montserrat';
+            font-weight: 700;
+            font-size: 4vw;
+            
+        }
+    }
 }
 
+/* Mobile */
 @media screen and (max-width: 500px) {
     .desktop-logo {
-        margin-left: 12%;
-        margin-right: 15%;
-    }
-    .menu-container {
-        left: 0px;
-    }
-    .notifications-container {
-        display: none;
-    }
-    .profile-container {
-        display: none;
-    }
+        width: 60vw;
+    }    
 }
 
+@media screen and (max-width: 420px) {
+    header {
+        min-height: 52px;
+        max-height: 52px;
+    }   
+
+    .desktop-logo {
+        height: 30px;
+    }
+
+    .add-account-container {
+        min-width: 52px;
+        max-width: 52px;
+        min-height: 52px;
+        max-height: 52px;        
+    }
+
+    .add-account {
+        height: 10vw;
+    }
+
+    .add-account-pop-up {
+        top: 52px;
+    }
+
+    .main-text {
+        font-size: 7vw;
+    }
+}
+/* Minimum width */
+@media screen and (max-width: 250px) {
+    html, body {
+        overflow-x: hidden;
+        overflow-y: hidden;
+        min-width: 250px;
+    }
+
+    .landing-left, .landing-mid {
+        min-width: 250px;
+    }
+}

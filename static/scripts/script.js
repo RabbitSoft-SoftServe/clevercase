@@ -10,11 +10,20 @@ if (menuButton) {
 }
 
 const profileButton = document.querySelector('.add-account-container')
-const openAddAccount = document.querySelector('.add-account')
+const openAddAccount = document.querySelector('.add-account-pop-up')
 
 if (profileButton) {
     profileButton.addEventListener('click', function () {
         openAddAccount.classList.toggle('is-active');
+    });
+}
+
+const burgerButton = document.querySelector('.menu-container')
+const openBurger = document.querySelector('.burger-open')
+
+if (burgerButton) {
+    burgerButton.addEventListener('click', function () {
+        openBurger.classList.toggle('is-active');
     });
 }
 

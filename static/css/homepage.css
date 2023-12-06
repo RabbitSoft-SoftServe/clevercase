@@ -429,7 +429,7 @@
             position: absolute;
             left: 50%;
             
-            top: 51%;
+            top: 50%;
             
             transform: translate(-50%, -50%);
             width: 982px;
@@ -488,7 +488,7 @@
 
         .input-container-date {
             margin-left: 450px;
-     
+            margin-top: 9px;
         }
         
         .input-container-date-add {

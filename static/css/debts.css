@@ -325,6 +325,7 @@ section {
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+
 }
 
 #notification-list {
@@ -345,9 +346,15 @@ section {
     font-size: 15px;
     font-style: normal;
     font-weight: normal;
+   
 }
 
 #notification-list ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12vh;
+    
     padding: 3px;
     border-width: 3px 0;
     border-style: solid;

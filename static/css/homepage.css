@@ -811,7 +811,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    background-color: #487C65;
+    background-color: #D5DDD9;
     font-family: 'Montserrat', sans-serif;
     font-size: 15px;
     font-style: normal;
@@ -866,6 +866,15 @@
         display: flex;
     }
 }
+
+@media screen and (max-width: 500px) {
+    .desktop-logo {
+        margin-left: 12%;
+        margin-right: 15%;
+        width: 60vw;
+    }
+}
+
 
 @media screen and (max-width: 500px) {
     .desktop-logo {
